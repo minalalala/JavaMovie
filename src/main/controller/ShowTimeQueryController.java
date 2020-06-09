@@ -53,11 +53,9 @@ public class ShowTimeQueryController extends HttpServlet {
 				movieShowTimeViews.add(movieShowTimeView);
 			}
 		}
-		LinkedHashMap<String,ArrayList<MovieShowTimeView>> map = new LinkedHashMap<String,ArrayList<MovieShowTimeView>>();
-		map.put("key", movieShowTimeViews);
 		
-		
-		JSONObject responseJSONObject = new JSONObject(map);
+		JSONObject responseJSONObject = new JSONObject();
+		responseJSONObject.put("movieShowTimeViews", movieShowTimeViews);
 		PrintWriter out = response.getWriter();
         out.println(responseJSONObject);
 	}

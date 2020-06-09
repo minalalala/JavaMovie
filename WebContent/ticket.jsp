@@ -61,25 +61,27 @@
 
                     //Ajax成功後執行的function，response為回傳的值
                     success : function(response){
-                    	var key = response["key"];
+                    	var movieShowTimeViews = response["movieShowTimeViews"];
                     	var movie = "";
                     	var url="";
                     	
-                    	for(var info in key){
+                    	for(var movieShowTimeView in movieShowTimeViews){
+                    		var view = movieShowTimeViews[movieShowTimeView];
+                    		
                     		movie+="<div class='gtco-container'>";
                     		movie+="<div class='row'>";
                     		movie+="<div class='col-md-13'>";
                     		movie+="<div class='zi_box_1'>";
                     		movie+="<div class='relative1'>";
-                    		movie+="<img style='float:left;margin:0px 60px 20px 20px;' width='20%' height='20%' src='movie_picture/"+key[info].movieId+".jpg'></div>";
-                    		movie+="<div><h3>"+key[info].movieName+"</h3>";
-                    		movie+="<lu><li>上映日期: "+key[info].releaseDate+"</li><li>片長: "+key[info].runtime+"</li><li>級數: "+key[info].movieRating+"</li></lu>";
+                    		movie+="<img style='float:left;margin:0px 60px 20px 20px;' width='20%' height='20%' src='movie_picture/"+view.movieId+".jpg'></div>";
+                    		movie+="<div><h3>"+view.movieName+"</h3>";
+                    		movie+="<lu><li>上映日期: "+view.releaseDate+"</li><li>片長: "+view.runtime+"</li><li>級數: "+view.movieRating+"</li></lu>";
                     		movie+="<br><h4>場次: </h4>";
                     		
-                    		for(var i = 0 ; i<response.key[info].times.length; i++){
-                    			url = "select_seats.jsp?id="+key[info].movieId+"&showtime="+key[info].showdate+" "+key[info].times[i];
+                    		for(var i = 0 ; i<view.times.length; i++){
+                    			url = "select_seats.jsp?id="+view.movieId+"&showtime="+view.showdate+" "+view.times[i];
                     			movie+="<span><a href='"+url+"'>";
-                    			movie+= key[info].times[i]+"</a></span> |"
+                    			movie+= view.times[i]+"</a></span> |"
                             }
                     		movie+="</div></div></div></div></div>";
                         }
